@@ -1,15 +1,61 @@
-# Create T3 App
+# Meeting Package Assignment
+
+
+Hello there,
+
+Hope you like what you see. If you want, you can mess around with the code by
+following any of the setup instructions below or you can see the assingment
+itself hosted at https://mp.howlin.app
+
+Enjoy.
+
+
+## Setup Dev Env
+
+Use the .env.example to create a .env file (simply remove the .example suffix).
+```sh
+# Install the dependencies
+npm i
+
+# Boot up the database
+docker compose up
+
+# Start prisma studio
+npm run db:studio
+
+# Run the db migrations
+npm run db:push
+
+# Start the dev server
+npm run dev
+```
+
+## Stage
+
+If you do make it this far, you will of course have to substitute the howlinbash/mp
+container with something you have write access to both in the commands below
+and the dockerfile. 
+
+Also replace the .env file with the .env.prod file. More elegant solutions
+exist but perfect is the enemy of completion.
+
+Also building the env vars into the container is not exactly best practice but
+c'mon guys, this is only a demo!
+```sh
+# Build the app container
+docker build -t howlinbash/mp --build-arg NEXT_PUBLIC_CLIENTVAR=clientvar .
+
+# Stage the containers
+docker compose -f docker-compose.prod.yml up
+```
+You can follow something very similar if you wish to deploy to production.
+
+
+## The Stack
 
 This is a [T3 Stack](https://create.t3.gg/) project bootstrapped with `create-t3-app`.
 
-## What's next? How do I make an app with this?
-
-We try to keep this project as simple as possible, so you can start with just the scaffolding we set up for you, and add additional things later when they become necessary.
-
-If you are not familiar with the different technologies used in this project, please refer to the respective docs. If you still are in the wind, please join our [Discord](https://t3.gg/discord) and ask for help.
-
 - [Next.js](https://nextjs.org)
-- [NextAuth.js](https://next-auth.js.org)
 - [Prisma](https://prisma.io)
 - [Tailwind CSS](https://tailwindcss.com)
 - [tRPC](https://trpc.io)
@@ -22,7 +68,3 @@ To learn more about the [T3 Stack](https://create.t3.gg/), take a look at the fo
 - [Learn the T3 Stack](https://create.t3.gg/en/faq#what-learning-resources-are-currently-available) — Check out these awesome tutorials
 
 You can check out the [create-t3-app GitHub repository](https://github.com/t3-oss/create-t3-app) — your feedback and contributions are welcome!
-
-## How do I deploy this?
-
-Follow our deployment guides for [Vercel](https://create.t3.gg/en/deployment/vercel), [Netlify](https://create.t3.gg/en/deployment/netlify) and [Docker](https://create.t3.gg/en/deployment/docker) for more information.
