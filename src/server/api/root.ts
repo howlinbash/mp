@@ -1,14 +1,12 @@
-import { postRouter } from "~/server/api/routers/post";
+import { hotelRouter } from "~/server/api/routers/hotel";
+import { hotelChannelRouter } from "~/server/api/routers/hotelChannel";
+import { uiRouter } from "~/server/api/routers/ui";
 import { createTRPCRouter } from "~/server/api/trpc";
 
-/**
- * This is the primary router for your server.
- *
- * All routers added in /api/routers should be manually added here.
- */
 export const appRouter = createTRPCRouter({
-  post: postRouter,
+  hotel: hotelRouter,
+  hotelChannel: hotelChannelRouter,
+  ui: uiRouter,
 });
 
-// export type definition of API
 export type AppRouter = typeof appRouter;
