@@ -6,12 +6,14 @@ const hotelNames = ["A", "B", "C", "D", "E"];
 const channelNames = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
 async function main() {
-  const hotelPromises = hotelNames.map(async (name) =>
-    prisma.hotel.create({ data: { name } })
+  const hotelPromises = hotelNames.map(async (identifier) =>
+    prisma.hotel.create({ data: { name: "Hotel " + identifier } })
   );
 
-  const channelPromises = channelNames.map(async (name) =>
-    prisma.channel.create({ data: { name } })
+  const channelPromises = channelNames.map(async (identifier) =>
+    prisma.channel.create({
+      data: { name: "Channel " + String(identifier), number: identifier },
+    })
   );
 
   const hotels = await Promise.all(hotelPromises);
@@ -34,7 +36,7 @@ async function main() {
   }
 
   if (hotels.length && hotels[0]) {
-    await prisma.ui.create({ data: { hotelId: hotels[0].id } })
+    await prisma.ui.create({ data: { hotelId: hotels[0].id } });
   }
 
   console.log("Records created successfully");

@@ -19,8 +19,8 @@ export const hotelChannelRouter = createTRPCRouter({
         },
         orderBy: {
           channel: {
-            name: 'asc',
-          }
+            number: "asc",
+          },
         } as const,
       });
       return channels;

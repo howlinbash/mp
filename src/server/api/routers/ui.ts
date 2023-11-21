@@ -6,8 +6,8 @@ export const uiRouter = createTRPCRouter({
   getCurrentHotel: publicProcedure.query(async ({ ctx }) => {
     return await ctx.db.ui.findFirst({
       select: {
-        hotelId: true
-      }
+        hotelId: true,
+      },
     });
   }),
 
@@ -22,11 +22,11 @@ export const uiRouter = createTRPCRouter({
       console.log({ hotelId });
 
       const onlyUi = await ctx.db.ui.findFirst();
-      let newHotelId
+      let newHotelId;
       if (onlyUi) {
         newHotelId = await ctx.db.ui.update({
           where: {
-            id: onlyUi.id
+            id: onlyUi.id,
           },
           data: {
             hotelId,

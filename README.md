@@ -26,6 +26,9 @@ npm run db:studio
 # Run the db migrations
 npm run db:push
 
+# Populate the database
+npm run db:load
+
 # Start the dev server
 npm run dev
 ```
@@ -33,14 +36,11 @@ npm run dev
 ## Stage
 
 If you do make it this far, you will of course have to substitute the howlinbash/mp
-container with something you have write access to both in the commands below
+container with something you have write access to, both in the commands below
 and the dockerfile. 
 
 Also replace the .env file with the .env.prod file. More elegant solutions
 exist but perfect is the enemy of completion.
-
-Also building the env vars into the container is not exactly best practice but
-c'mon guys, this is only a demo!
 ```sh
 # Build the app container
 docker build -t howlinbash/mp --build-arg NEXT_PUBLIC_CLIENTVAR=clientvar .
