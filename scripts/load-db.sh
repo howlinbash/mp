@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 tsc ./scripts/load-db.ts
 chmod +x ./scripts/load-db.js
