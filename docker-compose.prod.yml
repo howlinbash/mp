@@ -3,22 +3,48 @@ services:
   mp-db:
     image: postgres
     restart: always
-    ports:
-      - 5432:5432
+    # ports:
+    #   - 5432:5432
+    expose:
+      - 5432
     environment:
       - POSTGRES_DB=${POSTGRES_DB}
       - POSTGRES_USER=${POSTGRES_USER}
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
-  adminer:
-    image: adminer
-    restart: always
-    ports:
-      - 8080:8080
+  # adminer:
+  #   image: adminer
+  #   restart: always
+  #   ports:
+  #     - 8080:8080
   mp-app:
     image: howlinbash/mp
     depends_on:
       - mp-db
     ports:
-      - 3000:3000
+      - 3001:3000
     environment:
       - DATABASE_URL=${DATABASE_URL}
+
+  # mp-app:
+  #   image: howlinbash/mp
+  #   depends_on:
+  #     # - nginx-proxy
+  #     - mp-db
+  #   # expose:
+  #   #   - 3000
+  #   ports:
+  #     - 3000:3000
+  #   environment:
+  #     # VIRTUAL_HOST: mp.howlin.app
+  #     # LETSENCRYPT_HOST: mp.howlin.app
+  #     DATABASE_URL: ${T3_DB_URL}
+  #     # VIRTUAL_PORT: 3000
+  # mp-db:
+  #   image: postgres
+  #   restart: always
+  #   expose:
+  #     - 5432
+  #   environment:
+  #     - POSTGRES_DB=${T3_POSTGRES_DB}
+  #     - POSTGRES_USER=${POSTGRES_USER}
+  #     - POSTGRES_PASSWORD=${POSTGRES_USER}

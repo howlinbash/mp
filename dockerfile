@@ -10,10 +10,10 @@ WORKDIR /app
 ENV PORT 3000
 ENV NEXT_TELEMETRY_DISABLED 1
 
-COPY package*.json ./
-RUN npm ci
-
+# COPY package*.json ./
 COPY . .
+RUN rm -rf node_modules
+RUN npm ci
 
 RUN SKIP_ENV_VALIDATION=1 npm run build
 
@@ -25,6 +25,7 @@ RUN adduser --system --uid 1001 nextjs
 RUN chown -R nextjs:nodejs .next/standalone
 RUN chown -R nextjs:nodejs .next/static
 RUN chown -R nextjs:nodejs node_modules
+RUN chown -R nextjs:nodejs scripts
 RUN rm -rf .next/standalone/node_modules
 RUN rm -rf src
 RUN mv .next/standalone/* ./
